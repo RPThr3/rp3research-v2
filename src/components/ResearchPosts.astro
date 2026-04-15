@@ -1,0 +1,67 @@
+---
+const posts = [
+  {
+    slug: 'q1-2026-banking-earnings',
+    title: 'Q1 2026 Banking Earnings: What the Numbers Are Really Saying',
+    date: 'April 15, 2026',
+    category: 'Research',
+    excerpt: 'Q1 2026 delivered blockbuster results at the top of the industry — with important fault lines running underneath.',
+    tags: ['Banking', 'Earnings', 'Deposits', 'Consumer Finance', 'Research'],
+  },
+];
+---
+<section class="section research-posts" id="research-posts">
+  <div class="container">
+    <p class="section-label">Recent Research</p>
+    <div class="posts-list">
+      {posts.map((post, i) => (
+        <article class="post-card observe" style={`--delay:${i * 0.1}s`}>
+          <div class="post-card-inner">
+            <div class="post-card-left">
+              <div class="post-card-meta">
+                <span class="post-cat">{post.category}</span>
+                <span class="post-date">{post.date}</span>
+              </div>
+              <h3 class="post-title">
+                <a href={`/research/${post.slug}`}>{post.title}</a>
+              </h3>
+              <p class="post-excerpt">{post.excerpt}</p>
+              <div class="post-tags">
+                {post.tags.map(t => <span class="tag">{t}</span>)}
+              </div>
+            </div>
+            <div class="post-card-right">
+              <a href={`/research/${post.slug}`} class="post-read-link" aria-label={`Read ${post.title}`}>
+                <span>Read</span>
+                <span class="post-arrow">→</span>
+              </a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+<style>
+  .research-posts { border-top:1px solid var(--rule); }
+  .posts-list { display:flex; flex-direction:column; gap:0; }
+  .post-card { border-bottom:1px solid var(--rule); padding-block:44px; }
+  .post-card:first-child { padding-top:0; }
+  .post-card-inner { display:flex; align-items:flex-start; justify-content:space-between; gap:48px; }
+  .post-card-left { flex:1; }
+  .post-card-meta { display:flex; align-items:center; gap:16px; margin-bottom:14px; }
+  .post-cat { font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent); font-weight:500; }
+  .post-date { font-size:11px; color:var(--ink-faint); letter-spacing:0.06em; }
+  .post-title { font-family:var(--font-display); font-size:clamp(22px,2.2vw,32px); font-weight:400; color:var(--ink); line-height:1.2; margin-bottom:14px; }
+  .post-title a { transition:color 0.2s; }
+  .post-title a:hover { color:var(--accent); }
+  .post-excerpt { font-size:15px; line-height:1.8; color:var(--ink-muted); font-weight:300; margin-bottom:20px; max-width:640px; }
+  .post-tags { display:flex; flex-wrap:wrap; gap:8px; }
+  .tag { font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); border:1px solid var(--rule); padding:4px 10px; border-radius:2px; }
+  .post-card-right { flex-shrink:0; padding-top:4px; }
+  .post-read-link { display:flex; align-items:center; gap:8px; font-size:13px; letter-spacing:0.08em; color:var(--ink-muted); text-transform:uppercase; transition:color 0.2s; }
+  .post-read-link:hover { color:var(--ink); }
+  .post-read-link:hover .post-arrow { transform:translateX(4px); color:var(--accent); }
+  .post-arrow { font-size:16px; transition:transform 0.25s, color 0.25s; }
+  @media (max-width:640px) { .post-card-inner { flex-direction:column; gap:24px; } .post-card-right { align-self:flex-end; } }
+</style>
