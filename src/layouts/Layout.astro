@@ -19,7 +19,20 @@ const { title } = Astro.props;
   <body>
     <nav id="nav">
       <div class="nav-inner">
-        <a href="/" class="nav-wordmark">RP3 Research</a>
+        <a href="/" class="nav-wordmark" aria-label="RP3 Research — Home">
+          <svg viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg" style="height:44px;width:auto;display:block;">
+            <g transform="translate(76, 8)">
+              <rect x="-18" y="0" width="36" height="1.5" fill="currentColor" rx="1"/>
+              <rect x="-12" y="7" width="24" height="1.5" fill="currentColor" rx="1"/>
+              <rect x="-7" y="14" width="14" height="1.5" fill="currentColor" rx="1"/>
+            </g>
+            <text y="52" text-anchor="middle" x="76" font-family="'Cormorant Garamond', Garamond, Georgia, serif" font-size="28" font-weight="600">
+              <tspan fill="currentColor">RP</tspan><tspan fill="#C49A3C">3</tspan>
+            </text>
+            <line x1="22" y1="58" x2="130" y2="58" stroke="#C49A3C" stroke-width="0.6"/>
+            <text x="76" y="72" text-anchor="middle" font-family="'Cormorant Garamond', Garamond, Georgia, serif" font-size="7" font-weight="400" fill="currentColor" letter-spacing="2.5">INDEPENDENT RESEARCH &amp; OPINION</text>
+          </svg>
+        </a>
         <ul class="nav-links">
           <li><a href="#research">Research</a></li>
           <li><a href="#work">Work</a></li>
