@@ -2,9 +2,42 @@
 import Layout from '../layouts/Layout.astro';
 
 const recommendations = [
-  { category: 'Book',    title: '[Book Title]',    description: '[Why I recommend it]', link: '' },
-  { category: 'Product', title: '[Product Name]',  description: '[Why I recommend it]', link: '' },
-  { category: 'Service', title: '[Service Name]',  description: '[Why I recommend it]', link: '' },
+  {
+    category: 'Book',
+    asin: '0805073698',
+    title: 'Why Zebras Don\'t Get Ulcers',
+    author: 'Robert M. Sapolsky',
+    description: 'Stanford biologist and MacArthur "Genius Grant" recipient Robert Sapolsky makes the case that chronic psychological stress — the kind only humans manufacture — is slowly killing us. Zebras sprint from lions and move on. We lie awake worrying about mortgages. This book explains what that difference does to your cardiovascular system, immune function, memory, and sleep — and what to do about it.',
+    why: 'I think about this book constantly in the context of organizational design and product work. The research on stress and decision-making quality has direct implications for how teams and products should be built.',
+    link: 'https://www.amazon.com/dp/0805073698?tag=rp3research-20',
+  },
+  {
+    category: 'Book',
+    asin: '1633697975',
+    title: 'The Experience Economy',
+    author: 'B. Joseph Pine II & James H. Gilmore',
+    description: 'Published in 1999 and more relevant today than when it was written. Pine and Gilmore argued that goods and services were no longer enough — that the next competitive frontier was the staging of memorable experiences. The framework of commodity → product → service → experience → transformation is one of the clearest mental models in business strategy.',
+    why: 'If you work in financial product design and haven\'t read this, you\'re missing the theoretical foundation for almost everything the industry is trying to build. Banking is not a commodity — or it shouldn\'t be.',
+    link: 'https://www.amazon.com/dp/1633697975?tag=rp3research-20',
+  },
+  {
+    category: 'Book',
+    asin: '1324035439',
+    title: 'A Random Walk Down Wall Street',
+    author: 'Burton G. Malkiel',
+    description: 'First published in 1973, now in its 13th edition with over 1.5 million copies sold. Malkiel makes the empirical case that markets are efficient, active stock picking consistently underperforms index funds over time, and that the boring, disciplined approach to investing is almost always the right one.',
+    why: 'Every person with a 401k should read this once. It will permanently change how you think about financial media, market predictions, and where your money should actually go.',
+    link: 'https://www.amazon.com/dp/1324035439?tag=rp3research-20',
+  },
+  {
+    category: 'Book',
+    asin: '0385523882',
+    title: 'Buyology',
+    author: 'Martin Lindstrom',
+    description: 'Lindstrom spent three years and $7 million running neuromarketing experiments — using brain scans to study what actually drives purchasing decisions. The results contradict most of what companies believe about advertising, branding, and consumer motivation. Warning labels on cigarettes increase desire. Religion and brand loyalty activate the same neural pathways.',
+    why: 'This is the empirical companion to the behavioral thesis that runs through everything I write. People don\'t know why they do what they do — and that gap is where product strategy lives.',
+    link: 'https://www.amazon.com/dp/0385523882?tag=rp3research-20',
+  },
 ];
 
 const opinions = [
@@ -34,23 +67,30 @@ const opinions = [
           {recommendations.map((rec, i) => (
             <article class="rec-card observe" style={`--delay:${i * 0.1}s`}>
               <div class="rec-card-inner">
-                <div class="rec-left">
+                <div class="rec-cover-wrap">
+                  <img
+                    src={`https://images-na.ssl-images-amazon.com/images/P/${rec.asin}.jpg`}
+                    alt={`Cover of ${rec.title}`}
+                    class="rec-cover"
+                    width="80"
+                    height="120"
+                  />
+                </div>
+                <div class="rec-text">
                   <span class="rec-cat">{rec.category}</span>
                   <h3 class="rec-title">{rec.title}</h3>
+                  <p class="rec-author">{rec.author}</p>
                   <p class="rec-desc">{rec.description}</p>
+                  <p class="rec-why"><em>Why it's on this list:</em> {rec.why}</p>
+                  {rec.link && (
+                    <a href={rec.link} target="_blank" rel="noopener noreferrer" class="rec-buy-link">Buy on Amazon →</a>
+                  )}
                 </div>
-                {rec.link && (
-                  <div class="rec-right">
-                    <a href={rec.link} target="_blank" rel="noopener noreferrer" class="rec-link">
-                      <span>View</span>
-                      <span class="rec-arrow">→</span>
-                    </a>
-                  </div>
-                )}
               </div>
             </article>
           ))}
         </div>
+        <p class="affiliate-note">Some links on this page are affiliate links. If you purchase through them, I may earn a small commission at no extra cost to you.</p>
       </div>
     </section>
 
@@ -112,16 +152,19 @@ const opinions = [
   .rec-list { display:flex; flex-direction:column; gap:0; }
   .rec-card { border-bottom:1px solid var(--rule); padding-block:36px; }
   .rec-card:first-child { padding-top:0; }
-  .rec-card-inner { display:flex; align-items:flex-start; justify-content:space-between; gap:32px; }
-  .rec-left { flex:1; }
-  .rec-cat { display:inline-block; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent); font-weight:500; margin-bottom:10px; }
-  .rec-title { font-family:var(--font-display); font-size:clamp(20px,2vw,28px); font-weight:400; color:var(--ink); line-height:1.2; margin-bottom:10px; }
-  .rec-desc { font-size:14px; line-height:1.8; color:var(--ink-muted); font-weight:300; }
-  .rec-right { flex-shrink:0; padding-top:4px; }
-  .rec-link { display:flex; align-items:center; gap:8px; font-size:13px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-muted); transition:color 0.2s; }
-  .rec-link:hover { color:var(--ink); }
-  .rec-link:hover .rec-arrow { transform:translateX(4px); color:var(--accent); }
-  .rec-arrow { font-size:16px; transition:transform 0.25s, color 0.25s; }
+  .rec-card-inner { display:flex; align-items:flex-start; gap:20px; }
+  .rec-cover-wrap { flex-shrink:0; }
+  .rec-cover { width:80px; height:120px; object-fit:cover; border:0.5px solid var(--rule); background:var(--paper-warm); display:block; border-radius:1px; }
+  .rec-text { flex:1; }
+  .rec-cat { display:inline-block; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent); font-weight:500; margin-bottom:8px; }
+  .rec-title { font-family:var(--font-display); font-size:clamp(18px,2vw,26px); font-weight:400; color:var(--ink); line-height:1.2; margin-bottom:4px; }
+  .rec-author { font-size:12px; color:var(--ink-faint); font-weight:300; font-style:italic; margin-bottom:12px; }
+  .rec-desc { font-size:14px; line-height:1.8; color:var(--ink-muted); font-weight:300; margin-bottom:10px; }
+  .rec-why { font-size:13px; line-height:1.75; color:var(--ink-muted); font-weight:300; margin-bottom:14px; }
+  .rec-why em { font-style:italic; color:var(--ink); }
+  .rec-buy-link { font-size:13px; color:var(--accent); font-weight:400; letter-spacing:0.02em; transition:opacity 0.2s; }
+  .rec-buy-link:hover { opacity:0.7; }
+  .affiliate-note { font-size:11px; color:var(--ink-faint); font-style:italic; font-weight:300; margin-top:28px; padding-top:20px; border-top:1px solid var(--rule); line-height:1.6; }
 
   /* Opinion piece cards */
   .opinion-list { display:flex; flex-direction:column; gap:0; }
@@ -142,6 +185,7 @@ const opinions = [
   .opinion-arrow { font-size:16px; transition:transform 0.25s, color 0.25s; }
 
   @media (max-width:640px) {
-    .rec-card-inner, .opinion-card-inner { flex-direction:column; gap:16px; }
+    .rec-card-inner { gap:16px; }
+    .opinion-card-inner { flex-direction:column; gap:16px; }
   }
 </style>
