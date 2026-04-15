@@ -80,48 +80,7 @@ const opinions = [
       </div>
     </header>
 
-    <!-- Section 1: Recommendations -->
-    <section class="section recommendations-section" id="recommendations">
-      <div class="container">
-        <div class="section-intro observe">
-          <p class="section-label">What I'm Reading, Using &amp; Recommending</p>
-          <p class="section-sub">Books, products, and services worth your attention — things I've personally used and found genuinely useful.</p>
-        </div>
-        <div class="rec-list">
-          {recommendations.map((rec, i) => (
-            <article class="rec-card observe" style={`--delay:${i * 0.1}s`}>
-              <div class="rec-card-inner">
-                <div class="rec-cover-wrap">
-                  <img
-                    src={`https://images-na.ssl-images-amazon.com/images/P/${rec.asin}.jpg`}
-                    alt={`Cover of ${rec.title}`}
-                    class="rec-cover"
-                    width="80"
-                    height="120"
-                  />
-                </div>
-                <div class="rec-text">
-                  <span class="rec-cat">{rec.category}</span>
-                  <h3 class="rec-title">{rec.title}</h3>
-                  <p class="rec-author">{rec.author}</p>
-                  <p class="rec-desc">{rec.description}</p>
-                  <p class="rec-why"><em>Why it's on this list:</em> {rec.why}</p>
-                  {rec.link && (
-                    <a href={rec.link} target="_blank" rel="noopener noreferrer" class="rec-buy-link">Buy on Amazon →</a>
-                  )}
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-        <p class="affiliate-note">Some links on this page are affiliate links. If you purchase through them, I may earn a small commission at no extra cost to you.</p>
-      </div>
-    </section>
-
-    <!-- Divider -->
-    <div class="section-divider"><div class="container"><hr class="divider-rule" /></div></div>
-
-    <!-- Section 2: Opinion pieces -->
+    <!-- Section 1: Opinion pieces -->
     <section class="section opinion-section" id="opinion-pieces">
       <div class="container">
         <div class="section-intro observe">
@@ -159,6 +118,47 @@ const opinions = [
             </article>
           ))}
         </div>
+      </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="section-divider"><div class="container"><hr class="divider-rule" /></div></div>
+
+    <!-- Section 2: Recommendations -->
+    <section class="section recommendations-section" id="recommendations">
+      <div class="container">
+        <div class="section-intro observe">
+          <p class="section-label">What I'm Reading, Using &amp; Recommending</p>
+          <p class="section-sub">Books, products, and services worth your attention — things I've personally used and found genuinely useful.</p>
+        </div>
+        <div class="rec-list">
+          {recommendations.map((rec, i) => (
+            <article class="rec-card observe" style={`--delay:${i * 0.1}s`}>
+              <div class="rec-card-inner">
+                <div class="rec-cover-wrap">
+                  <img
+                    src={`https://images-na.ssl-images-amazon.com/images/P/${rec.asin}.jpg`}
+                    alt={`Cover of ${rec.title}`}
+                    class="rec-cover"
+                    width="80"
+                    height="120"
+                  />
+                </div>
+                <div class="rec-text">
+                  <span class="rec-cat">{rec.category}</span>
+                  <h3 class="rec-title">{rec.title}</h3>
+                  <p class="rec-author">{rec.author}</p>
+                  <p class="rec-desc">{rec.description}</p>
+                  <p class="rec-why"><em>Why it's on this list:</em> {rec.why}</p>
+                  {rec.link && (
+                    <a href={rec.link} target="_blank" rel="noopener noreferrer" class="rec-buy-link">Buy on Amazon →</a>
+                  )}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+        <p class="affiliate-note">Some links on this page are affiliate links. If you purchase through them, I may earn a small commission at no extra cost to you.</p>
       </div>
     </section>
 
