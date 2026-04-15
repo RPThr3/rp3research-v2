@@ -5,8 +5,7 @@ const phases = [
   {
     eyebrow: 'Phase 1 · Entry Point',
     name: 'Strategic Diagnostic',
-    timeframe: '2–3 weeks · Fixed fee · $15K–$35K',
-    pricingNote: 'Engagements are scoped individually. Pricing reflects typical range.',
+    timeframe: '2–3 weeks',
     paragraphs: [
       'This is where everything starts. Before any strategy gets written or any roadmap gets built, you need to understand what\'s actually happening — not what the org thinks is happening.',
       'In practice this means structured stakeholder interviews across product, technology, finance, and operations. It means pulling apart customer data to understand behavior, not just metrics. It means looking at how money is actually moving through the system — what products customers are using, which ones they\'re ignoring, where attrition is hiding, and what the competitive environment is doing that the internal view isn\'t capturing.',
@@ -17,7 +16,7 @@ const phases = [
   {
     eyebrow: 'Phase 2 · Advisory',
     name: 'Strategy & Growth Advisory',
-    timeframe: 'Ongoing · Monthly retainer · $5K–$15K/month',
+    timeframe: 'Ongoing',
     paragraphs: [
       'Once the diagnostic is done, most organizations know what needs to change but struggle to maintain the strategic thread through execution. This phase is about staying in the room — not as a vendor, but as a thinking partner who holds the strategic context while the org moves fast.',
       'Roadmaps drift. Priorities shift. New leadership asks different questions. The advisory relationship keeps the work anchored to what the diagnostic surfaced, not just what\'s loudest in the current sprint.',
@@ -28,7 +27,8 @@ const phases = [
   {
     eyebrow: 'Phase 2–3 · Light Implementation',
     name: 'Execution Support',
-    timeframe: 'Project-based · $25K–$75K',
+    timeframe: 'Project-based',
+    comingSoon: true,
     paragraphs: [
       'Strategy without implementation is just documentation. This phase is where the work gets operationalized — KPI frameworks get built, vendor evaluations get run, product rollout sequencing gets pressure-tested, and the team gets the structures it needs to execute without losing the plot.',
       'The hardest part isn\'t knowing what to build. It\'s sequencing it correctly, managing the dependencies, and keeping everyone aligned on what success actually looks like.',
@@ -38,7 +38,8 @@ const phases = [
   {
     eyebrow: 'Phase 3–4 · Full Implementation',
     name: 'Embedded Team Delivery',
-    timeframe: 'Project or team-based · $75K–$250K+',
+    timeframe: 'Project or team-based',
+    comingSoon: true,
     paragraphs: [
       'For organizations that need more than advisory — that need execution ownership — this phase puts a small embedded team inside the client. Program managers, analysts, and change management leads working alongside your people to deliver outcomes, not just recommendations.',
       'Not a team that shows up with slides and leaves. A team that owns workstreams, attends the difficult meetings, and is accountable to the same outcomes the client is accountable to.',
@@ -48,7 +49,8 @@ const phases = [
   {
     eyebrow: 'Phase 4–5 · Technical',
     name: 'Technical Integration',
-    timeframe: 'Project-based or hybrid · $100K–$300K+',
+    timeframe: 'Project-based or hybrid',
+    comingSoon: true,
     paragraphs: [
       'As AI and data infrastructure become central to how financial institutions operate, strategy and technology have to be in conversation with each other. This phase brings in technical capability — vendor integration support, analytics model development, workflow automation — to make sure the strategic vision can actually be built.',
       'The organizations that get this right treat it as a product strategy decision first and a technology decision second. The ones that get it wrong bolt the technology on afterward and wonder why adoption is low.',
@@ -58,7 +60,8 @@ const phases = [
   {
     eyebrow: 'Phase 5+ · Managed Services',
     name: 'Ongoing Advisory',
-    timeframe: 'Recurring retainer · $10K–$50K/month',
+    timeframe: 'Recurring retainer',
+    comingSoon: true,
     paragraphs: [
       'The organizations that sustain transformation treat strategy as an ongoing practice, not a periodic event. This phase is a long-term advisory relationship — monthly KPI reviews, optimization cycles, and executive partnership that keeps the work compounding over time.',
     ],
@@ -96,13 +99,13 @@ const phases = [
       <div class="container">
         <div class="phases-list">
           {phases.map((phase, i) => (
-            <article class="phase-card observe" style={`--delay:${i * 0.08}s`}>
+            <article class={`phase-card observe${phase.comingSoon ? ' phase-card--soon' : ''}`} style={`--delay:${i * 0.08}s`}>
+              {phase.comingSoon && <span class="phase-soon-badge">Coming Soon</span>}
               <div class="phase-header">
                 <span class="phase-eyebrow">{phase.eyebrow}</span>
                 <h2 class="phase-name">{phase.name}</h2>
                 <div class="phase-meta">
                   <span class="phase-timeframe">{phase.timeframe}</span>
-                  {phase.pricingNote && <span class="phase-pricing-note">{phase.pricingNote}</span>}
                 </div>
               </div>
               <div class="phase-body">
@@ -147,7 +150,7 @@ const phases = [
   /* Phases */
   .wwm-phases { padding-top:clamp(56px,8vw,100px); padding-bottom:0; }
   .phases-list { display:flex; flex-direction:column; gap:0; }
-  .phase-card { border-bottom:1px solid var(--rule); padding-block:clamp(44px,6vw,72px); display:grid; grid-template-columns:1fr 1.6fr; gap:clamp(32px,5vw,80px); align-items:start; }
+  .phase-card { position:relative; border-bottom:1px solid var(--rule); padding-block:clamp(44px,6vw,72px); display:grid; grid-template-columns:1fr 1.6fr; gap:clamp(32px,5vw,80px); align-items:start; }
   .phase-card:first-child { padding-top:0; }
 
   /* Phase header (left column) */
@@ -155,7 +158,8 @@ const phases = [
   .phase-name { font-family:var(--font-display); font-size:clamp(22px,2.4vw,32px); font-weight:400; color:var(--ink); line-height:1.2; margin-bottom:16px; }
   .phase-meta { display:flex; flex-direction:column; gap:6px; }
   .phase-timeframe { font-size:13px; color:var(--ink-muted); font-weight:300; line-height:1.5; }
-  .phase-pricing-note { font-size:11px; color:var(--ink-faint); font-style:italic; font-weight:300; line-height:1.5; }
+  .phase-card--soon { opacity:0.4; pointer-events:none; }
+  .phase-soon-badge { position:absolute; top:clamp(28px,4vw,48px); right:0; font-family:var(--font-body); font-size:9px; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-faint); background:var(--paper-warm); border:1px solid var(--rule); padding:4px 10px; border-radius:2px; }
 
   /* Phase body (right column) */
   .phase-body { display:flex; flex-direction:column; gap:18px; }
