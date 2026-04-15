@@ -1,48 +1,119 @@
 ---
-import '@fontsource-variable/inter';
-import '@fontsource/source-sans-pro';
-
 interface Props {
   title: string;
-  description?: string;
 }
-
-const { 
-  title, 
-  description = "A modern personal website template for software developers"
-} = Astro.props;
+const { title } = Astro.props;
 ---
-
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content={description} />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="RP3 Research — Independent research in fintech, payments, and consumer financial strategy. Charlotte, NC." />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
   </head>
-  <body class="bg-apple-gray-50 text-apple-gray-500">
-    <slot />
+  <body>
+    <nav id="nav">
+      <div class="nav-inner">
+        <a href="/" class="nav-wordmark">RP3 Research</a>
+        <ul class="nav-links">
+          <li><a href="#research">Research</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact" class="nav-cta">Connect</a></li>
+        </ul>
+        <button class="nav-menu-toggle" aria-label="Menu" id="menuToggle">
+          <span></span><span></span>
+        </button>
+      </div>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+      <ul>
+        <li><a href="#research" class="mobile-link">Research</a></li>
+        <li><a href="#work" class="mobile-link">Work</a></li>
+        <li><a href="#about" class="mobile-link">About</a></li>
+        <li><a href="#contact" class="mobile-link">Connect</a></li>
+      </ul>
+    </div>
+    <main><slot /></main>
+    <footer>
+      <div class="footer-inner">
+        <span class="footer-brand">RP3 Research</span>
+        <span class="footer-location">Charlotte, NC</span>
+        <span class="footer-copy">&copy; {new Date().getFullYear()}</span>
+      </div>
+    </footer>
   </body>
 </html>
-
 <style is:global>
   :root {
-    --accent: rgb(0, 122, 255);
-    --accent-dark: rgb(0, 64, 221);
+    --ink: #0e0e0e;
+    --ink-muted: #6b6b6b;
+    --ink-faint: #b8b8b8;
+    --paper: #f7f6f2;
+    --paper-warm: #eeece6;
+    --accent: #c8a96e;
+    --accent-subtle: rgba(200,169,110,0.12);
+    --rule: rgba(14,14,14,0.1);
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+    --nav-h: 64px;
+    --section-pad: clamp(80px,12vw,160px);
+    --gutter: clamp(24px,5vw,80px);
+    --max-w: 1200px;
   }
-  
-  html {
-    font-family: 'SF Pro Display', 'Inter Variable', system-ui, sans-serif;
-    scroll-behavior: smooth;
-  }
-
-  body {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    overscroll-behavior: none;
-  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  ul { list-style: none; }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+  .anim { opacity:0; animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) forwards; }
+  .anim-d1 { animation-delay:0.1s; }
+  .anim-d2 { animation-delay:0.25s; }
+  .anim-d3 { animation-delay:0.4s; }
+  .anim-d4 { animation-delay:0.55s; }
+  .anim-d5 { animation-delay:0.7s; }
+  .container { width:100%; max-width:var(--max-w); margin-inline:auto; padding-inline:var(--gutter); }
+  .section { padding-block:var(--section-pad); }
+  .section-label { font-family:var(--font-body); font-size:11px; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:40px; display:flex; align-items:center; gap:12px; }
+  .section-label::before { content:''; display:block; width:24px; height:1px; background:var(--accent); }
+  .observe { opacity:0; transform:translateY(20px); transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+  .observe.in-view { opacity:1; transform:none; }
+  #nav { position:fixed; top:0; left:0; right:0; z-index:100; height:var(--nav-h); transition:background 0.3s,border-color 0.3s; }
+  #nav.scrolled { background:rgba(247,246,242,0.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid var(--rule); }
+  .nav-inner { display:flex; align-items:center; justify-content:space-between; height:100%; max-width:var(--max-w); margin-inline:auto; padding-inline:var(--gutter); }
+  .nav-wordmark { font-family:var(--font-display); font-size:18px; font-weight:400; letter-spacing:0.04em; color:var(--ink); }
+  .nav-links { display:flex; align-items:center; gap:36px; }
+  .nav-links a { font-size:13px; font-weight:400; letter-spacing:0.06em; color:var(--ink-muted); transition:color 0.2s; }
+  .nav-links a:hover { color:var(--ink); }
+  .nav-cta { border:1px solid var(--ink)!important; padding:7px 18px!important; border-radius:2px; color:var(--ink)!important; font-size:12px!important; letter-spacing:0.1em!important; transition:background 0.2s,color 0.2s!important; }
+  .nav-cta:hover { background:var(--ink)!important; color:var(--paper)!important; }
+  .nav-menu-toggle { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:4px; }
+  .nav-menu-toggle span { display:block; width:22px; height:1px; background:var(--ink); }
+  .mobile-menu { display:none; position:fixed; inset:0; background:var(--paper); z-index:99; flex-direction:column; align-items:center; justify-content:center; }
+  .mobile-menu.open { display:flex; }
+  .mobile-menu li { width:100%; text-align:center; }
+  .mobile-link { display:block; padding:22px 0; font-family:var(--font-display); font-size:36px; font-weight:300; color:var(--ink); border-bottom:1px solid var(--rule); transition:color 0.2s; }
+  .mobile-link:hover { color:var(--accent); }
+  footer { border-top:1px solid var(--rule); padding-block:32px; }
+  .footer-inner { display:flex; align-items:center; justify-content:space-between; max-width:var(--max-w); margin-inline:auto; padding-inline:var(--gutter); gap:16px; flex-wrap:wrap; }
+  .footer-brand { font-family:var(--font-display); font-size:16px; color:var(--ink); }
+  .footer-location, .footer-copy { font-size:12px; color:var(--ink-muted); letter-spacing:0.06em; }
+  @media (max-width:768px) { .nav-links { display:none; } .nav-menu-toggle { display:flex; } }
 </style>
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => { nav?.classList.toggle('scrolled', window.scrollY > 30); });
+  const toggle = document.getElementById('menuToggle');
+  const menu = document.getElementById('mobileMenu');
+  toggle?.addEventListener('click', () => { menu?.classList.toggle('open'); });
+  document.querySelectorAll('.mobile-link').forEach(link => { link.addEventListener('click', () => menu?.classList.remove('open')); });
+  const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('in-view'); observer.unobserve(entry.target); } }); }, { threshold: 0.12 });
+  document.querySelectorAll('.observe').forEach(el => observer.observe(el));
+</script>

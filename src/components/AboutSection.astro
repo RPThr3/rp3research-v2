@@ -1,0 +1,67 @@
+---
+---
+<section class="section about" id="about">
+  <div class="container">
+    <p class="section-label">About</p>
+    <div class="about-layout">
+      <div class="about-main observe">
+        <h2 class="about-headline">
+          The hardest problems<br />
+          are <em>behavioral</em>,<br />
+          not technical.
+        </h2>
+        <div class="about-body">
+          <p>RP3 Research is the independent practice of a senior product and strategy leader with nearly a decade at the intersection of fintech, consumer banking, and organizational design. Based in Charlotte, NC — the second-largest financial center in the United States.</p>
+          <p>The core thesis: banks and fintechs are deploying sophisticated technology, but the gap between product capability and actual consumer behavior remains stubbornly wide. Closing that gap requires more than engineering — it requires deep literacy in how people actually make financial decisions.</p>
+          <p>Whether it's a product audit, a market brief, a vendor evaluation framework, or a go-to-market strategy — every engagement is anchored in behavioral reality and designed to move teams forward.</p>
+        </div>
+      </div>
+      <div class="about-principles observe" style="--delay:0.2s">
+        <h3 class="principles-label">Working principles</h3>
+        <dl class="principles-list">
+          <div class="principle">
+            <dt>Empathy first.</dt>
+            <dd>Product decisions that ignore how real people relate to money tend to fail quietly. Start with the human.</dd>
+          </div>
+          <div class="principle">
+            <dt>Strategy without narrative is a spreadsheet.</dt>
+            <dd>The work has to translate — to executives, to partners, to product teams in the room.</dd>
+          </div>
+          <div class="principle">
+            <dt>Complexity is a design failure.</dt>
+            <dd>The best financial products feel obvious in hindsight. Get there by removing, not adding.</dd>
+          </div>
+          <div class="principle">
+            <dt>Progress happens when empathy meets execution.</dt>
+            <dd>Ideas are abundant. The rare skill is turning insight into something that ships and works.</dd>
+          </div>
+        </dl>
+        <div class="location-card">
+          <span class="loc-label">Based in</span>
+          <span class="loc-city">Charlotte, NC</span>
+          <span class="loc-detail">America's second-largest financial center</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .about { border-top:1px solid var(--rule); }
+  .about-layout { display:grid; grid-template-columns:1.1fr 1fr; gap:80px; align-items:start; }
+  .about-main { }
+  .about-headline { font-family:var(--font-display); font-size:clamp(32px,4vw,56px); font-weight:300; line-height:1.1; letter-spacing:-0.01em; color:var(--ink); margin-bottom:44px; }
+  .about-headline em { font-style:italic; color:var(--accent); }
+  .about-body { display:flex; flex-direction:column; gap:22px; }
+  .about-body p { font-size:15px; line-height:1.85; color:var(--ink-muted); font-weight:300; }
+  .principles-label { font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:28px; font-weight:500; }
+  .principles-list { display:flex; flex-direction:column; gap:0; margin-bottom:48px; }
+  .principle { padding-block:24px; border-bottom:1px solid var(--rule); }
+  .principle:first-child { padding-top:0; }
+  .principle dt { font-family:var(--font-display); font-size:18px; font-weight:400; color:var(--ink); margin-bottom:8px; line-height:1.3; }
+  .principle dd { font-size:13px; line-height:1.75; color:var(--ink-muted); font-weight:300; }
+  .location-card { background:var(--paper-warm); border:1px solid var(--rule); border-left:3px solid var(--accent); padding:24px 28px; display:flex; flex-direction:column; gap:4px; border-radius:2px; }
+  .loc-label { font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-faint); font-weight:500; }
+  .loc-city { font-family:var(--font-display); font-size:24px; font-weight:400; color:var(--ink); }
+  .loc-detail { font-size:12px; color:var(--ink-muted); }
+  @media (max-width:900px) { .about-layout { grid-template-columns:1fr; gap:60px; } }
+</style>
