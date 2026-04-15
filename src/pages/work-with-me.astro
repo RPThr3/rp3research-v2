@@ -1,0 +1,180 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const phases = [
+  {
+    eyebrow: 'Phase 1 · Entry Point',
+    name: 'Strategic Diagnostic',
+    timeframe: '2–3 weeks · Fixed fee · $15K–$35K',
+    pricingNote: 'Engagements are scoped individually. Pricing reflects typical range.',
+    paragraphs: [
+      'This is where everything starts. Before any strategy gets written or any roadmap gets built, you need to understand what\'s actually happening — not what the org thinks is happening.',
+      'In practice this means structured stakeholder interviews across product, technology, finance, and operations. It means pulling apart customer data to understand behavior, not just metrics. It means looking at how money is actually moving through the system — what products customers are using, which ones they\'re ignoring, where attrition is hiding, and what the competitive environment is doing that the internal view isn\'t capturing.',
+      'The diagnostic output is a clear, prioritized picture of where value is being left on the table — and a roadmap that tells you exactly where to start.',
+    ],
+    walkaway: 'A written diagnostic report, a prioritized opportunity framework, and a recommended path forward. Something you can put in front of your board.',
+  },
+  {
+    eyebrow: 'Phase 2 · Advisory',
+    name: 'Strategy & Growth Advisory',
+    timeframe: 'Ongoing · Monthly retainer · $5K–$15K/month',
+    paragraphs: [
+      'Once the diagnostic is done, most organizations know what needs to change but struggle to maintain the strategic thread through execution. This phase is about staying in the room — not as a vendor, but as a thinking partner who holds the strategic context while the org moves fast.',
+      'Roadmaps drift. Priorities shift. New leadership asks different questions. The advisory relationship keeps the work anchored to what the diagnostic surfaced, not just what\'s loudest in the current sprint.',
+      'The real value isn\'t the deliverable — it\'s having someone in the room who can translate between what the strategy requires and what the team can actually build. That translation layer is what prevents expensive pivots six months in.',
+    ],
+    walkaway: 'A strategic partner who attends key planning sessions, pressure-tests decisions before they get expensive, and keeps the roadmap honest.',
+  },
+  {
+    eyebrow: 'Phase 2–3 · Light Implementation',
+    name: 'Execution Support',
+    timeframe: 'Project-based · $25K–$75K',
+    paragraphs: [
+      'Strategy without implementation is just documentation. This phase is where the work gets operationalized — KPI frameworks get built, vendor evaluations get run, product rollout sequencing gets pressure-tested, and the team gets the structures it needs to execute without losing the plot.',
+      'The hardest part isn\'t knowing what to build. It\'s sequencing it correctly, managing the dependencies, and keeping everyone aligned on what success actually looks like.',
+    ],
+    walkaway: 'A working KPI framework, a vendor evaluation or selection recommendation, and a rollout plan your team can execute against.',
+  },
+  {
+    eyebrow: 'Phase 3–4 · Full Implementation',
+    name: 'Embedded Team Delivery',
+    timeframe: 'Project or team-based · $75K–$250K+',
+    paragraphs: [
+      'For organizations that need more than advisory — that need execution ownership — this phase puts a small embedded team inside the client. Program managers, analysts, and change management leads working alongside your people to deliver outcomes, not just recommendations.',
+      'Not a team that shows up with slides and leaves. A team that owns workstreams, attends the difficult meetings, and is accountable to the same outcomes the client is accountable to.',
+    ],
+    walkaway: 'Shipped work. Not a report about what should be shipped.',
+  },
+  {
+    eyebrow: 'Phase 4–5 · Technical',
+    name: 'Technical Integration',
+    timeframe: 'Project-based or hybrid · $100K–$300K+',
+    paragraphs: [
+      'As AI and data infrastructure become central to how financial institutions operate, strategy and technology have to be in conversation with each other. This phase brings in technical capability — vendor integration support, analytics model development, workflow automation — to make sure the strategic vision can actually be built.',
+      'The organizations that get this right treat it as a product strategy decision first and a technology decision second. The ones that get it wrong bolt the technology on afterward and wonder why adoption is low.',
+    ],
+    walkaway: 'Technical infrastructure that\'s built to the strategy, not bolted on afterward.',
+  },
+  {
+    eyebrow: 'Phase 5+ · Managed Services',
+    name: 'Ongoing Advisory',
+    timeframe: 'Recurring retainer · $10K–$50K/month',
+    paragraphs: [
+      'The organizations that sustain transformation treat strategy as an ongoing practice, not a periodic event. This phase is a long-term advisory relationship — monthly KPI reviews, optimization cycles, and executive partnership that keeps the work compounding over time.',
+    ],
+    walkaway: 'A permanent thinking partner who knows your business as well as your own team does.',
+  },
+];
+---
+<Layout title="Work With Me — RP3 Research">
+  <div class="wwm-page">
+
+    <!-- Page header -->
+    <header class="wwm-header">
+      <div class="container">
+        <p class="section-label">Engagements</p>
+        <h1 class="wwm-headline">Every engagement starts with a diagnostic.</h1>
+        <p class="wwm-subtext">Before any strategy gets written or any roadmap gets built, you need to understand what's actually happening — not what the org thinks is happening. That's where we start. Every time.</p>
+      </div>
+    </header>
+
+    <!-- Through-line visual -->
+    <div class="wwm-throughline-wrap">
+      <div class="container">
+        <div class="wwm-throughline observe">
+          <span class="tl-pill">Diagnose</span>
+          <span class="tl-arrow">→</span>
+          <span class="tl-pill">Build</span>
+          <span class="tl-arrow">→</span>
+          <span class="tl-pill">Scale</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase sections -->
+    <section class="wwm-phases section">
+      <div class="container">
+        <div class="phases-list">
+          {phases.map((phase, i) => (
+            <article class="phase-card observe" style={`--delay:${i * 0.08}s`}>
+              <div class="phase-header">
+                <span class="phase-eyebrow">{phase.eyebrow}</span>
+                <h2 class="phase-name">{phase.name}</h2>
+                <div class="phase-meta">
+                  <span class="phase-timeframe">{phase.timeframe}</span>
+                  {phase.pricingNote && <span class="phase-pricing-note">{phase.pricingNote}</span>}
+                </div>
+              </div>
+              <div class="phase-body">
+                {phase.paragraphs.map(p => <p>{p}</p>)}
+                <div class="phase-walkaway">
+                  <em><strong>You walk away with:</strong> {phase.walkaway}</em>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing CTA -->
+    <section class="wwm-cta section">
+      <div class="container">
+        <div class="cta-inner observe">
+          <h2 class="cta-headline">Ready to start?</h2>
+          <p class="cta-subtext">Every engagement begins with a conversation. No decks, no proposals — just a direct discussion about where you are and whether we're the right fit.</p>
+          <a href="/#contact" class="btn-primary">Connect</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</Layout>
+<style>
+  .wwm-page { padding-top:var(--nav-h); }
+
+  /* Page header */
+  .wwm-header { padding-block:clamp(48px,8vw,96px) clamp(40px,6vw,64px); border-bottom:1px solid var(--rule); }
+  .wwm-headline { font-family:var(--font-display); font-size:clamp(36px,5vw,72px); font-weight:300; line-height:1.1; letter-spacing:-0.01em; color:var(--ink); margin-bottom:20px; }
+  .wwm-subtext { font-size:clamp(15px,1.5vw,17px); line-height:1.8; color:var(--ink-muted); font-weight:300; max-width:600px; }
+
+  /* Through-line */
+  .wwm-throughline-wrap { padding-block:clamp(40px,5vw,64px); border-bottom:1px solid var(--rule); }
+  .wwm-throughline { display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+  .tl-pill { font-family:var(--font-body); font-size:12px; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-muted); border:1px solid var(--rule); padding:10px 24px; border-radius:2px; }
+  .tl-arrow { font-size:18px; color:#C49A3C; line-height:1; }
+
+  /* Phases */
+  .wwm-phases { padding-top:clamp(56px,8vw,100px); padding-bottom:0; }
+  .phases-list { display:flex; flex-direction:column; gap:0; }
+  .phase-card { border-bottom:1px solid var(--rule); padding-block:clamp(44px,6vw,72px); display:grid; grid-template-columns:1fr 1.6fr; gap:clamp(32px,5vw,80px); align-items:start; }
+  .phase-card:first-child { padding-top:0; }
+
+  /* Phase header (left column) */
+  .phase-eyebrow { display:block; font-family:var(--font-body); font-size:10px; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent); margin-bottom:10px; }
+  .phase-name { font-family:var(--font-display); font-size:clamp(22px,2.4vw,32px); font-weight:400; color:var(--ink); line-height:1.2; margin-bottom:16px; }
+  .phase-meta { display:flex; flex-direction:column; gap:6px; }
+  .phase-timeframe { font-size:13px; color:var(--ink-muted); font-weight:300; line-height:1.5; }
+  .phase-pricing-note { font-size:11px; color:var(--ink-faint); font-style:italic; font-weight:300; line-height:1.5; }
+
+  /* Phase body (right column) */
+  .phase-body { display:flex; flex-direction:column; gap:18px; }
+  .phase-body p { font-size:15px; line-height:1.85; color:var(--ink-muted); font-weight:300; }
+  .phase-walkaway { border-left:2px solid #C49A3C; padding-left:16px; margin-top:4px; }
+  .phase-walkaway em { font-style:italic; font-size:14px; line-height:1.75; color:var(--ink-muted); font-weight:300; }
+  .phase-walkaway strong { font-style:normal; font-weight:500; color:var(--ink); }
+
+  /* CTA */
+  .wwm-cta { padding-top:clamp(64px,10vw,120px); padding-bottom:clamp(80px,12vw,160px); }
+  .cta-inner { border-top:1px solid var(--rule); padding-top:clamp(56px,8vw,96px); max-width:600px; }
+  .cta-headline { font-family:var(--font-display); font-size:clamp(32px,4vw,56px); font-weight:300; line-height:1.1; letter-spacing:-0.01em; color:var(--ink); margin-bottom:20px; }
+  .cta-subtext { font-size:clamp(15px,1.5vw,17px); line-height:1.8; color:var(--ink-muted); font-weight:300; margin-bottom:36px; }
+  .btn-primary { display:inline-block; padding:14px 32px; background:var(--ink); color:var(--paper); font-size:13px; letter-spacing:0.1em; text-transform:uppercase; font-weight:500; border-radius:2px; transition:background 0.2s,transform 0.2s; }
+  .btn-primary:hover { background:#2a2a2a; transform:translateY(-1px); }
+
+  /* Mobile */
+  @media (max-width:768px) {
+    .phase-card { grid-template-columns:1fr; gap:24px; }
+    .wwm-throughline { gap:14px; }
+  }
+</style>
