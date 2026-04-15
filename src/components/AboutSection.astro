@@ -36,10 +36,25 @@
             <dd>Ideas are abundant. The rare skill is turning insight into something that ships and works.</dd>
           </div>
         </dl>
-        <div class="location-card">
-          <span class="loc-label">Based in</span>
-          <span class="loc-city">Charlotte, NC</span>
-          <span class="loc-detail">America's second-largest financial center</span>
+        <div class="coverage-card">
+          <span class="coverage-label">Research coverage</span>
+          <div class="coverage-regions">
+            <div class="coverage-region">
+              <span class="region-name">Southeast</span>
+              <ul class="region-cities">
+                <li><span class="city-name">Charlotte</span><span class="city-state">NC</span></li>
+                <li><span class="city-name">Tampa</span><span class="city-state">FL</span></li>
+              </ul>
+            </div>
+            <div class="coverage-region">
+              <span class="region-name">Mid-Atlantic</span>
+              <ul class="region-cities">
+                <li><span class="city-name">Washington</span><span class="city-state">DC</span></li>
+                <li><span class="city-name">Richmond</span><span class="city-state">VA</span></li>
+                <li><span class="city-name">Virginia Beach</span><span class="city-state">VA</span></li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -59,9 +74,13 @@
   .principle:first-child { padding-top:0; }
   .principle dt { font-family:var(--font-display); font-size:18px; font-weight:400; color:var(--ink); margin-bottom:8px; line-height:1.3; }
   .principle dd { font-size:13px; line-height:1.75; color:var(--ink-muted); font-weight:300; }
-  .location-card { background:var(--paper-warm); border:1px solid var(--rule); border-left:3px solid var(--accent); padding:24px 28px; display:flex; flex-direction:column; gap:4px; border-radius:2px; }
-  .loc-label { font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-faint); font-weight:500; }
-  .loc-city { font-family:var(--font-display); font-size:24px; font-weight:400; color:var(--ink); }
-  .loc-detail { font-size:12px; color:var(--ink-muted); }
+  .coverage-card { background:var(--paper-warm); border:1px solid var(--rule); border-left:3px solid var(--accent); padding:24px 28px; border-radius:2px; }
+  .coverage-label { display:block; font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-faint); font-weight:500; margin-bottom:20px; }
+  .coverage-regions { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .region-name { display:block; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); font-weight:500; margin-bottom:10px; }
+  .region-cities { display:flex; flex-direction:column; gap:6px; }
+  .region-cities li { display:flex; align-items:baseline; gap:8px; }
+  .city-name { font-family:var(--font-display); font-size:17px; font-weight:400; color:var(--ink); line-height:1.2; }
+  .city-state { font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-faint); font-weight:500; }
   @media (max-width:900px) { .about-layout { grid-template-columns:1fr; gap:60px; } }
 </style>
