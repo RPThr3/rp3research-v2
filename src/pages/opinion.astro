@@ -1,14 +1,147 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const recommendations = [
+  { category: 'Book',    title: '[Book Title]',    description: '[Why I recommend it]', link: '' },
+  { category: 'Product', title: '[Product Name]',  description: '[Why I recommend it]', link: '' },
+  { category: 'Service', title: '[Service Name]',  description: '[Why I recommend it]', link: '' },
+];
+
+const opinions = [
+  { title: 'Coming Soon', description: 'Opinion pieces will appear here.', date: '', slug: '', placeholder: true },
+];
 ---
 <Layout title="Opinion — RP3 Research">
-  <div class="opinion-placeholder">
-    <div class="container">
-      <p class="coming-soon">Coming soon.</p>
-    </div>
+  <div class="opinion-page">
+
+    <!-- Page header -->
+    <header class="opinion-header">
+      <div class="container">
+        <p class="section-label">Opinion</p>
+        <h1 class="opinion-headline">Takes worth having.</h1>
+        <p class="opinion-subtext">Recommendations and perspectives from 8+ years at the intersection of fintech, product, and strategy.</p>
+      </div>
+    </header>
+
+    <!-- Section 1: Recommendations -->
+    <section class="section recommendations-section" id="recommendations">
+      <div class="container">
+        <div class="section-intro observe">
+          <p class="section-label">What I'm Reading, Using &amp; Recommending</p>
+          <p class="section-sub">Books, products, and services worth your attention — things I've personally used and found genuinely useful.</p>
+        </div>
+        <div class="rec-list">
+          {recommendations.map((rec, i) => (
+            <article class="rec-card observe" style={`--delay:${i * 0.1}s`}>
+              <div class="rec-card-inner">
+                <div class="rec-left">
+                  <span class="rec-cat">{rec.category}</span>
+                  <h3 class="rec-title">{rec.title}</h3>
+                  <p class="rec-desc">{rec.description}</p>
+                </div>
+                {rec.link && (
+                  <div class="rec-right">
+                    <a href={rec.link} target="_blank" rel="noopener noreferrer" class="rec-link">
+                      <span>View</span>
+                      <span class="rec-arrow">→</span>
+                    </a>
+                  </div>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="section-divider"><div class="container"><hr class="divider-rule" /></div></div>
+
+    <!-- Section 2: Opinion pieces -->
+    <section class="section opinion-section" id="opinion-pieces">
+      <div class="container">
+        <div class="section-intro observe">
+          <p class="section-label">Opinion</p>
+          <p class="section-sub">Takes on financial systems, product strategy, and consumer behavior. Shorter form than research. More direct.</p>
+        </div>
+        <div class="opinion-list">
+          {opinions.map((piece, i) => (
+            <article class={`opinion-card observe${piece.placeholder ? ' opinion-card--placeholder' : ''}`} style={`--delay:${i * 0.1}s`}>
+              <div class="opinion-card-inner">
+                <div class="opinion-left">
+                  {piece.date && <span class="opinion-date">{piece.date}</span>}
+                  <h3 class="opinion-title">
+                    {piece.slug ? <a href={`/opinion/${piece.slug}`}>{piece.title}</a> : piece.title}
+                  </h3>
+                  <p class="opinion-desc">{piece.description}</p>
+                </div>
+                {piece.slug && (
+                  <div class="opinion-right">
+                    <a href={`/opinion/${piece.slug}`} class="opinion-read-link">
+                      <span>Read</span>
+                      <span class="opinion-arrow">→</span>
+                    </a>
+                  </div>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
   </div>
 </Layout>
 <style>
-  .opinion-placeholder { min-height:100svh; display:flex; align-items:center; padding-top:var(--nav-h); }
-  .coming-soon { font-family:var(--font-display); font-size:clamp(28px,4vw,48px); font-weight:300; color:var(--ink-muted); letter-spacing:-0.01em; }
+  .opinion-page { padding-top:var(--nav-h); }
+
+  /* Page header */
+  .opinion-header { padding-block:clamp(48px,8vw,96px) clamp(40px,6vw,64px); border-bottom:1px solid var(--rule); }
+  .opinion-headline { font-family:var(--font-display); font-size:clamp(36px,5vw,72px); font-weight:300; line-height:1.1; letter-spacing:-0.01em; color:var(--ink); margin-bottom:20px; }
+  .opinion-subtext { font-size:clamp(15px,1.5vw,17px); line-height:1.8; color:var(--ink-muted); font-weight:300; max-width:560px; }
+
+  /* Shared section intro */
+  .section-intro { margin-bottom:48px; }
+  .section-sub { font-size:15px; line-height:1.8; color:var(--ink-muted); font-weight:300; max-width:520px; margin-top:8px; }
+
+  /* Divider */
+  .section-divider { padding-block:0; }
+  .divider-rule { border:none; border-top:1px solid var(--rule); margin:0; }
+
+  /* Recommendation cards */
+  .rec-list { display:flex; flex-direction:column; gap:0; }
+  .rec-card { border-bottom:1px solid var(--rule); padding-block:36px; }
+  .rec-card:first-child { padding-top:0; }
+  .rec-card-inner { display:flex; align-items:flex-start; justify-content:space-between; gap:32px; }
+  .rec-left { flex:1; }
+  .rec-cat { display:inline-block; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent); font-weight:500; margin-bottom:10px; }
+  .rec-title { font-family:var(--font-display); font-size:clamp(20px,2vw,28px); font-weight:400; color:var(--ink); line-height:1.2; margin-bottom:10px; }
+  .rec-desc { font-size:14px; line-height:1.8; color:var(--ink-muted); font-weight:300; }
+  .rec-right { flex-shrink:0; padding-top:4px; }
+  .rec-link { display:flex; align-items:center; gap:8px; font-size:13px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-muted); transition:color 0.2s; }
+  .rec-link:hover { color:var(--ink); }
+  .rec-link:hover .rec-arrow { transform:translateX(4px); color:var(--accent); }
+  .rec-arrow { font-size:16px; transition:transform 0.25s, color 0.25s; }
+
+  /* Opinion piece cards */
+  .opinion-list { display:flex; flex-direction:column; gap:0; }
+  .opinion-card { border-bottom:1px solid var(--rule); padding-block:36px; }
+  .opinion-card:first-child { padding-top:0; }
+  .opinion-card--placeholder { opacity:0.45; }
+  .opinion-card-inner { display:flex; align-items:flex-start; justify-content:space-between; gap:32px; }
+  .opinion-left { flex:1; }
+  .opinion-date { display:block; font-size:11px; color:var(--ink-faint); letter-spacing:0.06em; margin-bottom:8px; }
+  .opinion-title { font-family:var(--font-display); font-size:clamp(20px,2vw,28px); font-weight:400; color:var(--ink); line-height:1.2; margin-bottom:10px; }
+  .opinion-title a { transition:color 0.2s; }
+  .opinion-title a:hover { color:var(--accent); }
+  .opinion-desc { font-size:14px; line-height:1.8; color:var(--ink-muted); font-weight:300; }
+  .opinion-right { flex-shrink:0; padding-top:4px; }
+  .opinion-read-link { display:flex; align-items:center; gap:8px; font-size:13px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-muted); transition:color 0.2s; }
+  .opinion-read-link:hover { color:var(--ink); }
+  .opinion-read-link:hover .opinion-arrow { transform:translateX(4px); color:var(--accent); }
+  .opinion-arrow { font-size:16px; transition:transform 0.25s, color 0.25s; }
+
+  @media (max-width:640px) {
+    .rec-card-inner, .opinion-card-inner { flex-direction:column; gap:16px; }
+  }
 </style>

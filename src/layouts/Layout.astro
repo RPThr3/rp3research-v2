@@ -20,25 +20,18 @@ const { title } = Astro.props;
     <nav id="nav">
       <div class="nav-inner">
         <a href="/" class="nav-wordmark" aria-label="RP3 Research — Home">
-          <svg viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg" style="height:44px;width:auto;display:block;">
-            <g transform="translate(76, 8)">
-              <rect x="-18" y="0" width="36" height="1.5" fill="currentColor" rx="1"/>
-              <rect x="-12" y="7" width="24" height="1.5" fill="currentColor" rx="1"/>
-              <rect x="-7" y="14" width="14" height="1.5" fill="currentColor" rx="1"/>
-            </g>
-            <text y="52" text-anchor="middle" x="76" font-family="'Cormorant Garamond', Garamond, Georgia, serif" font-size="28" font-weight="600">
-              <tspan fill="currentColor">RP</tspan><tspan fill="#C49A3C">3</tspan>
+          <svg viewBox="0 0 420 80" xmlns="http://www.w3.org/2000/svg" style="height:40px;width:auto;display:block;">
+            <text y="62" x="20" font-family="'Cormorant Garamond', Garamond, Georgia, serif" font-weight="600" font-size="64">
+              <tspan fill="currentColor">RP</tspan><tspan fill="#C49A3C">3</tspan><tspan font-size="36" font-weight="400" fill="currentColor" dx="10">Research</tspan>
             </text>
-            <line x1="22" y1="58" x2="130" y2="58" stroke="#C49A3C" stroke-width="0.6"/>
-            <text x="76" y="72" text-anchor="middle" font-family="'Cormorant Garamond', Garamond, Georgia, serif" font-size="7" font-weight="400" fill="currentColor" letter-spacing="2.5">INDEPENDENT RESEARCH &amp; OPINION</text>
           </svg>
         </a>
         <ul class="nav-links">
-          <li><a href="#research">Research</a></li>
+          <li><a href="/#research">Research</a></li>
           <li><a href="/opinion">Opinion</a></li>
-          <li><a href="#work">Experience</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact" class="nav-cta">Connect</a></li>
+          <li><a href="/#work">Experience</a></li>
+          <li><a href="/#about">About</a></li>
+          <li><a href="/#contact" class="nav-cta">Connect</a></li>
         </ul>
         <button class="nav-menu-toggle" aria-label="Menu" id="menuToggle">
           <span></span><span></span>
@@ -47,11 +40,11 @@ const { title } = Astro.props;
     </nav>
     <div class="mobile-menu" id="mobileMenu">
       <ul>
-        <li><a href="#research" class="mobile-link">Research</a></li>
+        <li><a href="/#research" class="mobile-link">Research</a></li>
         <li><a href="/opinion" class="mobile-link">Opinion</a></li>
-        <li><a href="#work" class="mobile-link">Experience</a></li>
-        <li><a href="#about" class="mobile-link">About</a></li>
-        <li><a href="#contact" class="mobile-link">Connect</a></li>
+        <li><a href="/#work" class="mobile-link">Experience</a></li>
+        <li><a href="/#about" class="mobile-link">About</a></li>
+        <li><a href="/#contact" class="mobile-link">Connect</a></li>
       </ul>
     </div>
     <main><slot /></main>
