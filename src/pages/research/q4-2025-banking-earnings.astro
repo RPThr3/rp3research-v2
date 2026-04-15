@@ -136,6 +136,26 @@ import Layout from '../../layouts/Layout.astro';
             <a href="/#research-posts" class="post-back-bottom">← Back to Research</a>
           </footer>
 
+          <aside class="post-sources">
+            <div class="sources-group">
+              <h4 class="sources-subhead">Earnings Reports &amp; SEC Filings</h4>
+              <ul class="sources-list">
+                <li><a href="https://www.sec.gov/Archives/edgar/data/0000019617/000162828026001902/a4q25erfexhibit991narrative.htm" target="_blank" rel="noopener noreferrer">JPMorgan Chase Q4 &amp; Full Year 2025 Earnings</a></li>
+                <li><a href="https://d1io3yog0oux5.cloudfront.net/_e2168afa9da39bc005f702569810279f/bankofamerica/db/775/10471/webcast_transcript/2026-01-15+BAC+4Q+Earnings+Call_ADA.pdf" target="_blank" rel="noopener noreferrer">Bank of America Q4 &amp; Full Year 2025 Earnings Call Transcript</a></li>
+                <li><a href="https://www.sec.gov/Archives/edgar/data/0000072971/000007297126000009/ex993-wellsfargo4q25pres.htm" target="_blank" rel="noopener noreferrer">Wells Fargo Q4 &amp; Full Year 2025 Earnings Presentation (SEC 8-K)</a></li>
+                <li><a href="https://www.cnbc.com/2026/01/14/citigroup-c-earnings-q4-2025.html" target="_blank" rel="noopener noreferrer">Citigroup Q4 &amp; Full Year 2025 Earnings — CNBC</a></li>
+                <li><a href="https://media.ally.com/2026-01-21-Ally-Financial-reports-fourth-quarter-and-full-year-2025-financial-results" target="_blank" rel="noopener noreferrer">Ally Financial Q4 &amp; Full Year 2025 Earnings Press Release</a></li>
+                <li><a href="https://www.sec.gov/Archives/edgar/data/0000040729/000119312526017242/d101102dex992.htm" target="_blank" rel="noopener noreferrer">Ally Financial Q4 2025 Earnings Presentation (SEC 8-K)</a></li>
+              </ul>
+            </div>
+            <div class="sources-group">
+              <h4 class="sources-subhead">Consumer Research</h4>
+              <ul class="sources-list">
+                <li><a href="https://www.deloitte.com/us/en/insights/topics/economy/consumer-pulse/state-of-the-us-consumer-01-2026.html" target="_blank" rel="noopener noreferrer">Deloitte Insights — State of the US Consumer: January 2026</a></li>
+              </ul>
+            </div>
+          </aside>
+
         </div>
       </div>
     </article>
@@ -193,4 +213,13 @@ import Layout from '../../layouts/Layout.astro';
   .sig-org { font-size:12px; color:var(--ink-faint); letter-spacing:0.06em; }
   .post-back-bottom { font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-faint); transition:color 0.2s; }
   .post-back-bottom:hover { color:var(--accent); }
+
+  /* Sources */
+  .post-sources { margin-top:clamp(40px,6vw,56px); padding-top:28px; border-top:1px solid var(--rule); display:flex; flex-direction:column; gap:24px; }
+  .sources-subhead { font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-faint); font-weight:500; margin-bottom:10px; }
+  .sources-list { display:flex; flex-direction:column; gap:6px; }
+  .sources-list li { font-size:12px; color:var(--ink-faint); font-weight:300; padding-left:14px; position:relative; line-height:1.5; }
+  .sources-list li::before { content:''; position:absolute; left:0; top:8px; width:6px; height:1px; background:var(--rule); }
+  .sources-list a { color:var(--ink-faint); text-decoration:underline; text-underline-offset:3px; text-decoration-color:var(--rule); transition:color 0.2s, text-decoration-color 0.2s; }
+  .sources-list a:hover { color:var(--ink-muted); text-decoration-color:var(--ink-muted); }
 </style>
