@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import TravelLayout from '../../layouts/opinion/TravelLayout.astro';
+import BrandsLayout from '../../layouts/opinion/BrandsLayout.astro';
+import ArtsEntertainmentLayout from '../../layouts/opinion/ArtsEntertainmentLayout.astro';
+import Callout from '../../components/mdx/Callout.astro';
+import PullQuote from '../../components/mdx/PullQuote.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('opinion', ({ data }) => data.status === 'published');
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const layouts = {
+  'travel': TravelLayout,
+  'brands': BrandsLayout,
+  'arts-entertainment': ArtsEntertainmentLayout,
+};
+const PostLayout = layouts[post.data.category];
+---
+<PostLayout post={post}>
+  <Content components={{ Callout, PullQuote }} />
+</PostLayout>

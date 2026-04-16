@@ -23,8 +23,22 @@ const { title } = Astro.props;
           <svg viewBox="0 0 200 32" xmlns="http://www.w3.org/2000/svg" style="height:48px;width:auto;display:block;"><text x="4" font-family="'Cormorant Garamond', Garamond, Georgia, serif" dominant-baseline="alphabetic"><tspan font-size="28" font-weight="600" fill="currentColor" y="26" dy="0">RP</tspan><tspan font-size="28" font-weight="600" fill="#C49A3C" dy="-7">3</tspan><tspan font-size="16" font-weight="400" fill="currentColor" dx="6" dy="7"> Research</tspan></text></svg>
         </a>
         <ul class="nav-links">
-          <li><a href="/#research-posts">Research</a></li>
-          <li><a href="/opinion">Opinion</a></li>
+          <li class="nav-item nav-item--dropdown">
+            <a href="/research">Research</a>
+            <ul class="nav-dropdown">
+              <li><a href="/research/market-insight">Market Insight</a></li>
+              <li><a href="/research/case-study">Case Study</a></li>
+              <li><a href="/research/product-build">Product Build</a></li>
+            </ul>
+          </li>
+          <li class="nav-item nav-item--dropdown">
+            <a href="/opinion">Opinion</a>
+            <ul class="nav-dropdown">
+              <li><a href="/opinion/travel">Travel</a></li>
+              <li><a href="/opinion/brands">Brands</a></li>
+              <li><a href="/opinion/arts-entertainment">Arts &amp; Entertainment</a></li>
+            </ul>
+          </li>
           <li><a href="/experience">Experience</a></li>
           <li><a href="/about">About</a></li>
           <li><a href="/connect" class="nav-cta">Connect</a></li>
@@ -36,8 +50,24 @@ const { title } = Astro.props;
     </nav>
     <div class="mobile-menu" id="mobileMenu">
       <ul>
-        <li><a href="/#research-posts" class="mobile-link">Research</a></li>
-        <li><a href="/opinion" class="mobile-link">Opinion</a></li>
+        <li class="mobile-item mobile-item--expandable">
+          <button class="mobile-expand-btn" aria-expanded="false">Research <span class="mobile-chevron">↓</span></button>
+          <ul class="mobile-sub">
+            <li><a href="/research" class="mobile-link mobile-link--main">All Research</a></li>
+            <li><a href="/research/market-insight" class="mobile-link mobile-link--sub">Market Insight</a></li>
+            <li><a href="/research/case-study" class="mobile-link mobile-link--sub">Case Study</a></li>
+            <li><a href="/research/product-build" class="mobile-link mobile-link--sub">Product Build</a></li>
+          </ul>
+        </li>
+        <li class="mobile-item mobile-item--expandable">
+          <button class="mobile-expand-btn" aria-expanded="false">Opinion <span class="mobile-chevron">↓</span></button>
+          <ul class="mobile-sub">
+            <li><a href="/opinion" class="mobile-link mobile-link--main">All Opinion</a></li>
+            <li><a href="/opinion/travel" class="mobile-link mobile-link--sub">Travel</a></li>
+            <li><a href="/opinion/brands" class="mobile-link mobile-link--sub">Brands</a></li>
+            <li><a href="/opinion/arts-entertainment" class="mobile-link mobile-link--sub">Arts &amp; Entertainment</a></li>
+          </ul>
+        </li>
         <li><a href="/experience" class="mobile-link">Experience</a></li>
         <li><a href="/about" class="mobile-link">About</a></li>
         <li><a href="/connect" class="mobile-link">Connect</a></li>
@@ -98,13 +128,27 @@ const { title } = Astro.props;
   .nav-links a:hover { color:var(--ink); }
   .nav-cta { border:1px solid var(--ink)!important; padding:7px 18px!important; border-radius:2px; color:var(--ink)!important; font-size:12px!important; letter-spacing:0.1em!important; transition:background 0.2s,color 0.2s!important; }
   .nav-cta:hover { background:var(--ink)!important; color:var(--paper)!important; }
+  .nav-item { position:relative; }
+  .nav-dropdown { position:absolute; top:calc(100% + 8px); left:-16px; background:var(--paper); border:1px solid var(--rule); padding:8px 0; min-width:180px; opacity:0; visibility:hidden; transform:translateY(-6px); transition:opacity 0.18s, transform 0.18s, visibility 0.18s; z-index:200; border-radius:2px; box-shadow:0 4px 16px rgba(14,14,14,0.08); }
+  .nav-dropdown li { list-style:none; }
+  .nav-dropdown a { display:block; padding:10px 20px; font-size:12px; letter-spacing:0.06em; color:var(--ink-muted); font-weight:400; transition:color 0.15s, background 0.15s; white-space:nowrap; }
+  .nav-dropdown a:hover { color:var(--ink); background:var(--paper-warm); }
+  .nav-item--dropdown:hover .nav-dropdown { opacity:1; visibility:visible; transform:translateY(0); }
   .nav-menu-toggle { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:4px; }
   .nav-menu-toggle span { display:block; width:22px; height:1px; background:var(--ink); }
-  .mobile-menu { display:none; position:fixed; inset:0; background:var(--paper); z-index:99; flex-direction:column; align-items:center; justify-content:center; }
+  .mobile-menu { display:none; position:fixed; inset:0; background:var(--paper); z-index:99; flex-direction:column; overflow-y:auto; padding:calc(var(--nav-h) + 24px) clamp(24px,5vw,64px) 48px; }
   .mobile-menu.open { display:flex; }
-  .mobile-menu li { width:100%; text-align:center; }
-  .mobile-link { display:block; padding:22px 0; font-family:var(--font-display); font-size:36px; font-weight:300; color:var(--ink); border-bottom:1px solid var(--rule); transition:color 0.2s; }
+  .mobile-menu > ul { width:100%; }
+  .mobile-item { border-bottom:1px solid var(--rule); }
+  .mobile-link { display:block; padding:20px 0; font-family:var(--font-display); font-size:clamp(28px,5vw,36px); font-weight:300; color:var(--ink); transition:color 0.2s; }
   .mobile-link:hover { color:var(--accent); }
+  .mobile-link--main { font-size:16px; font-family:var(--font-body); padding:12px 0 8px; color:var(--ink-muted); }
+  .mobile-link--sub { font-size:14px; font-family:var(--font-body); font-weight:300; padding:8px 0 8px 12px; color:var(--ink-muted); }
+  .mobile-expand-btn { display:flex; align-items:center; justify-content:space-between; width:100%; background:none; border:none; cursor:pointer; padding:20px 0; font-family:var(--font-display); font-size:clamp(28px,5vw,36px); font-weight:300; color:var(--ink); text-align:left; }
+  .mobile-chevron { font-size:18px; transition:transform 0.2s; font-family:var(--font-body); }
+  .mobile-expand-btn[aria-expanded="true"] .mobile-chevron { transform:rotate(180deg); }
+  .mobile-sub { display:none; padding-bottom:12px; }
+  .mobile-sub.open { display:block; }
   footer { border-top:1px solid var(--rule); padding-block:32px; }
   .footer-inner { display:flex; align-items:center; justify-content:space-between; max-width:var(--max-w); margin-inline:auto; padding-inline:var(--gutter); gap:16px; flex-wrap:wrap; }
   .footer-brand { font-family:var(--font-display); font-size:16px; color:var(--ink); }
@@ -118,6 +162,14 @@ const { title } = Astro.props;
   const menu = document.getElementById('mobileMenu');
   toggle?.addEventListener('click', () => { menu?.classList.toggle('open'); });
   document.querySelectorAll('.mobile-link').forEach(link => { link.addEventListener('click', () => menu?.classList.remove('open')); });
+  document.querySelectorAll('.mobile-expand-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!expanded));
+      const sub = btn.nextElementSibling;
+      sub?.classList.toggle('open', !expanded);
+    });
+  });
   const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('in-view'); observer.unobserve(entry.target); } }); }, { threshold: 0.12 });
   document.querySelectorAll('.observe').forEach(el => observer.observe(el));
 </script>

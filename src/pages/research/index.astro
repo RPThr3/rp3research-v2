@@ -1,0 +1,67 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('research', ({ data }) => data.status === 'published');
+const posts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const categoryLabels: Record<string, string> = {
+  'market-insight': 'Market Insight',
+  'case-study': 'Case Study',
+  'product-build': 'Product Build',
+};
+
+const categories = [
+  { slug: 'market-insight', label: 'Market Insight' },
+  { slug: 'case-study', label: 'Case Study' },
+  { slug: 'product-build', label: 'Product Build' },
+];
+---
+<Layout title="Research — RP3 Research">
+  <div class="research-page" style="padding-top:var(--nav-h)">
+
+    <header class="research-header">
+      <div class="container">
+        <p class="section-label">Research</p>
+        <h1 class="research-headline">Analysis worth reading.</h1>
+        <p class="research-subtext">Deep dives into fintech, banking earnings, consumer behavior, and product strategy. Written for people who want to understand what's actually happening — not just what happened.</p>
+        <nav class="category-nav">
+          <a href="/research" class="cat-link cat-link--active">All</a>
+          {categories.map(c => (
+            <a href={`/research/${c.slug}`} class="cat-link">{c.label}</a>
+          ))}
+        </nav>
+      </div>
+    </header>
+
+    <section class="section posts-section">
+      <div class="container">
+        <div class="posts-list">
+          {posts.map((post, i) => (
+            <PostCard
+              title={post.data.title}
+              date={post.data.date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+              excerpt={post.data.excerpt}
+              tags={post.data.tags}
+              href={`/research/${post.slug}`}
+              categoryLabel={categoryLabels[post.data.category]}
+              delay={i * 0.1}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+  </div>
+</Layout>
+<style>
+  .research-header { padding-block:clamp(48px,8vw,96px) clamp(40px,6vw,64px); border-bottom:1px solid var(--rule); }
+  .research-headline { font-family:var(--font-display); font-size:clamp(36px,5vw,72px); font-weight:300; line-height:1.1; letter-spacing:-0.01em; color:var(--ink); margin-bottom:20px; }
+  .research-subtext { font-size:clamp(15px,1.5vw,17px); line-height:1.8; color:var(--ink-muted); font-weight:300; max-width:560px; margin-bottom:40px; }
+  .category-nav { display:flex; gap:8px; flex-wrap:wrap; }
+  .cat-link { font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-muted); border:1px solid var(--rule); padding:7px 16px; border-radius:2px; transition:background 0.2s, color 0.2s, border-color 0.2s; }
+  .cat-link:hover, .cat-link--active { background:var(--ink); color:var(--paper); border-color:var(--ink); }
+  .posts-section { border-top:none; }
+  .posts-list { display:flex; flex-direction:column; }
+</style>

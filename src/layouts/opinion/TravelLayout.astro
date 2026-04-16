@@ -1,0 +1,12 @@
+---
+import OpinionPostLayout from '../OpinionPostLayout.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'opinion'>;
+}
+const { post } = Astro.props;
+---
+<OpinionPostLayout post={post} categoryLabel="Travel">
+  <slot />
+</OpinionPostLayout>

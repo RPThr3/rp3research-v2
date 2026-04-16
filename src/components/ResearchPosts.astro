@@ -1,45 +1,42 @@
 ---
-const posts = [
-  {
-    slug: 'q1-2026-banking-earnings',
-    title: 'Q1 2026 Banking Earnings: What the Numbers Are Really Saying',
-    date: 'April 15, 2026',
-    category: 'Research',
-    excerpt: 'Q1 2026 delivered blockbuster results at the top of the industry — with important fault lines running underneath.',
-    tags: ['Banking', 'Earnings', 'Deposits', 'Consumer Finance', 'Research'],
-  },
-  {
-    slug: 'q4-2025-banking-earnings',
-    title: 'Q4 2025 Banking Earnings: The Industry Closes a Monster Year',
-    date: 'January 15, 2026',
-    category: 'Research',
-    excerpt: 'The biggest banks closed a historic 2025 — but the quarterly details reveal a more nuanced picture heading into the new year.',
-    tags: ['Banking', 'Earnings', 'Deposits', 'Full-Year Results', 'Research'],
-  },
-];
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('research', ({ data }) => data.status === 'published');
+const posts = allPosts
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 5);
+
+const categoryLabels: Record<string, string> = {
+  'market-insight': 'Market Insight',
+  'case-study': 'Case Study',
+  'product-build': 'Product Build',
+};
 ---
 <section class="section research-posts" id="research-posts">
   <div class="container">
-    <p class="section-label">Recent Research</p>
+    <div class="posts-header observe">
+      <p class="section-label">Recent Research</p>
+      <a href="/research" class="view-all">View all research →</a>
+    </div>
     <div class="posts-list">
       {posts.map((post, i) => (
         <article class="post-card observe" style={`--delay:${i * 0.1}s`}>
           <div class="post-card-inner">
             <div class="post-card-left">
               <div class="post-card-meta">
-                <span class="post-cat">{post.category}</span>
-                <span class="post-date">{post.date}</span>
+                <span class="post-cat">{categoryLabels[post.data.category]}</span>
+                <span class="post-date">{post.data.date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
               </div>
               <h3 class="post-title">
-                <a href={`/research/${post.slug}`}>{post.title}</a>
+                <a href={`/research/${post.slug}`}>{post.data.title}</a>
               </h3>
-              <p class="post-excerpt">{post.excerpt}</p>
+              <p class="post-excerpt">{post.data.excerpt}</p>
               <div class="post-tags">
-                {post.tags.map(t => <span class="tag">{t}</span>)}
+                {post.data.tags.map(t => <span class="tag">{t}</span>)}
               </div>
             </div>
             <div class="post-card-right">
-              <a href={`/research/${post.slug}`} class="post-read-link" aria-label={`Read ${post.title}`}>
+              <a href={`/research/${post.slug}`} class="post-read-link" aria-label={`Read ${post.data.title}`}>
                 <span>Read</span>
                 <span class="post-arrow">→</span>
               </a>
@@ -52,6 +49,9 @@ const posts = [
 </section>
 <style>
   .research-posts { border-top:1px solid var(--rule); }
+  .posts-header { display:flex; align-items:baseline; justify-content:space-between; gap:16px; margin-bottom:0; }
+  .view-all { font-size:12px; letter-spacing:0.08em; color:var(--ink-muted); transition:color 0.2s; white-space:nowrap; }
+  .view-all:hover { color:var(--accent); }
   .posts-list { display:flex; flex-direction:column; gap:0; }
   .post-card { border-bottom:1px solid var(--rule); padding-block:44px; }
   .post-card:first-child { padding-top:0; }

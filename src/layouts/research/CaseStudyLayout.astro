@@ -1,0 +1,32 @@
+---
+import ResearchPostLayout from '../ResearchPostLayout.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'research'>;
+  metrics?: Array<{ label: string; value: string }>;
+}
+const { post, metrics } = Astro.props;
+---
+<ResearchPostLayout post={post} categoryLabel="Case Study">
+  {metrics && metrics.length > 0 && (
+    <div class="metrics-bar">
+      {metrics.map(m => (
+        <div class="metric">
+          <span class="metric-value">{m.value}</span>
+          <span class="metric-label">{m.label}</span>
+        </div>
+      ))}
+    </div>
+  )}
+  <slot />
+</ResearchPostLayout>
+
+<style>
+  .metrics-bar { display:flex; gap:0; border:1px solid var(--rule); border-radius:2px; margin-bottom:clamp(44px,6vw,64px); overflow:hidden; }
+  .metric { flex:1; padding:20px 24px; border-right:1px solid var(--rule); }
+  .metric:last-child { border-right:none; }
+  .metric-value { display:block; font-family:var(--font-display); font-size:clamp(22px,2.5vw,32px); font-weight:400; color:var(--ink); line-height:1.1; margin-bottom:6px; }
+  .metric-label { font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-faint); font-weight:500; }
+  @media (max-width:640px) { .metrics-bar { flex-direction:column; } .metric { border-right:none; border-bottom:1px solid var(--rule); } .metric:last-child { border-bottom:none; } }
+</style>

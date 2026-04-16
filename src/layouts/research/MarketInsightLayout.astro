@@ -1,0 +1,12 @@
+---
+import ResearchPostLayout from '../ResearchPostLayout.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'research'>;
+}
+const { post } = Astro.props;
+---
+<ResearchPostLayout post={post} categoryLabel="Market Insight">
+  <slot />
+</ResearchPostLayout>

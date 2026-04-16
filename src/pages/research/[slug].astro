@@ -1,0 +1,31 @@
+---
+import { getCollection } from 'astro:content';
+import MarketInsightLayout from '../../layouts/research/MarketInsightLayout.astro';
+import CaseStudyLayout from '../../layouts/research/CaseStudyLayout.astro';
+import ProductBuildLayout from '../../layouts/research/ProductBuildLayout.astro';
+import EarningsTable from '../../components/mdx/EarningsTable.astro';
+import Callout from '../../components/mdx/Callout.astro';
+import PullQuote from '../../components/mdx/PullQuote.astro';
+import Sources from '../../components/mdx/Sources.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('research', ({ data }) => data.status === 'published');
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const layouts = {
+  'market-insight': MarketInsightLayout,
+  'case-study': CaseStudyLayout,
+  'product-build': ProductBuildLayout,
+};
+const PostLayout = layouts[post.data.category];
+---
+<PostLayout post={post}>
+  <Content components={{ EarningsTable, Callout, PullQuote, Sources }} />
+</PostLayout>

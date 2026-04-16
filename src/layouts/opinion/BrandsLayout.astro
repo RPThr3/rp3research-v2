@@ -1,0 +1,25 @@
+---
+import OpinionPostLayout from '../OpinionPostLayout.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'opinion'>;
+  verdict?: string;
+}
+const { post, verdict } = Astro.props;
+---
+<OpinionPostLayout post={post} categoryLabel="Brands">
+  {verdict && (
+    <div class="verdict-block">
+      <span class="verdict-label">Quick Take</span>
+      <p class="verdict-text">{verdict}</p>
+    </div>
+  )}
+  <slot />
+</OpinionPostLayout>
+
+<style>
+  .verdict-block { background:var(--paper-warm); border:1px solid var(--rule); border-left:3px solid var(--accent); padding:20px 24px; border-radius:2px; margin-bottom:44px; }
+  .verdict-label { display:block; font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); font-weight:500; margin-bottom:8px; }
+  .verdict-text { font-size:15px; line-height:1.75; color:var(--ink); font-weight:300; font-style:italic; }
+</style>

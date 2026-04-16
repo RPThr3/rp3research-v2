@@ -1,0 +1,63 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('opinion', ({ data }) => data.status === 'published' && data.category === 'travel');
+const posts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const categories = [
+  { slug: 'travel', label: 'Travel' },
+  { slug: 'brands', label: 'Brands' },
+  { slug: 'arts-entertainment', label: 'Arts & Entertainment' },
+];
+---
+<Layout title="Travel — Opinion — RP3 Research">
+  <div class="opinion-page" style="padding-top:var(--nav-h)">
+    <header class="opinion-header">
+      <div class="container">
+        <p class="section-label">Opinion</p>
+        <h1 class="opinion-headline">Travel</h1>
+        <p class="opinion-subtext">Cities, places, and what they tell you about where things are headed.</p>
+        <nav class="category-nav">
+          <a href="/opinion" class="cat-link">All</a>
+          {categories.map(c => (
+            <a href={`/opinion/${c.slug}`} class={`cat-link${c.slug === 'travel' ? ' cat-link--active' : ''}`}>{c.label}</a>
+          ))}
+        </nav>
+      </div>
+    </header>
+    <section class="section posts-section">
+      <div class="container">
+        {posts.length === 0 ? (
+          <p class="empty-state">No posts yet — check back soon.</p>
+        ) : (
+          <div class="posts-list">
+            {posts.map((post, i) => (
+              <PostCard
+                title={post.data.title}
+                date={post.data.date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+                excerpt={post.data.excerpt}
+                tags={post.data.tags}
+                href={`/opinion/${post.slug}`}
+                categoryLabel="Travel"
+                delay={i * 0.1}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  </div>
+</Layout>
+<style>
+  .opinion-header { padding-block:clamp(48px,8vw,96px) clamp(40px,6vw,64px); border-bottom:1px solid var(--rule); }
+  .opinion-headline { font-family:var(--font-display); font-size:clamp(36px,5vw,72px); font-weight:300; line-height:1.1; letter-spacing:-0.01em; color:var(--ink); margin-bottom:20px; }
+  .opinion-subtext { font-size:clamp(15px,1.5vw,17px); line-height:1.8; color:var(--ink-muted); font-weight:300; max-width:560px; margin-bottom:40px; }
+  .category-nav { display:flex; gap:8px; flex-wrap:wrap; }
+  .cat-link { font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-muted); border:1px solid var(--rule); padding:7px 16px; border-radius:2px; transition:background 0.2s, color 0.2s, border-color 0.2s; }
+  .cat-link:hover, .cat-link--active { background:var(--ink); color:var(--paper); border-color:var(--ink); }
+  .posts-section { border-top:none; }
+  .posts-list { display:flex; flex-direction:column; }
+  .empty-state { font-size:15px; color:var(--ink-faint); font-weight:300; padding-block:48px; }
+</style>
