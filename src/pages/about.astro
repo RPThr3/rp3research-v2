@@ -1,0 +1,99 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="About — RP3 Research">
+  <div style="padding-top:var(--nav-h)">
+    <section class="section about" id="about">
+      <div class="container">
+        <p class="section-label">About</p>
+        <div class="about-layout">
+          <div class="about-main observe">
+            <h2 class="about-headline">
+              The hardest problems<br />
+              are <em>behavioral</em>,<br />
+              not technical.
+            </h2>
+            <div class="about-body">
+              <p>I'm a product and strategy operator focused on how financial systems actually work—across banking, payments, and consumer behavior.</p>
+              <p>Over the past 8+ years at Ally and Booz Allen, I've worked across product development, financial modeling, and strategy. That's meant building features, shaping pricing and deposit strategies, working with vendors, and helping translate complex ideas into decisions that actually ship.</p>
+              <p>This site is where I break down what I'm seeing—across earnings, product design, and how customers really use money. What's working, what's not, and where the industry is heading.</p>
+              <p>Banks and fintechs are building increasingly sophisticated technology, but the gap between product capability and how people actually behave remains wide.</p>
+              <p>Closing that gap isn't an engineering problem. It's a behavioral one.</p>
+              <p>Whether it's a product audit, a market breakdown, or a company deep dive, the goal is the same: connect strategy to real-world behavior—and make it useful.</p>
+            </div>
+            <div class="about-personal">
+              <p>Outside of work, I spend most of my time outside—hiking, skiing, or planning the next trip. I've played guitar for years, love to cook, and will take any excuse to get in the water. I also have a dog who keeps things interesting.</p>
+            </div>
+          </div>
+          <div class="about-principles observe" style="--delay:0.2s">
+            <h3 class="principles-label">Working principles</h3>
+            <dl class="principles-list">
+              <div class="principle">
+                <dt>Empathy first.</dt>
+                <dd>Product decisions that ignore how people actually relate to money tend to fail quietly. Start with the human.</dd>
+              </div>
+              <div class="principle">
+                <dt>Strategy without narrative is just a spreadsheet.</dt>
+                <dd>The work has to translate—to executives, partners, and product teams. If it doesn't land, it doesn't matter.</dd>
+              </div>
+              <div class="principle">
+                <dt>Complexity is a design failure.</dt>
+                <dd>The best financial products feel obvious in hindsight. That usually comes from removing, not adding.</dd>
+              </div>
+              <div class="principle">
+                <dt>Progress happens when empathy meets execution.</dt>
+                <dd>Ideas are easy. Turning insight into something that ships—and works—is the job.</dd>
+              </div>
+            </dl>
+            <div class="coverage-card">
+              <span class="coverage-label">Research coverage</span>
+              <div class="coverage-regions">
+                <div class="coverage-region">
+                  <span class="region-name">Southeast</span>
+                  <ul class="region-cities">
+                    <li><span class="city-name">Charlotte</span><span class="city-state">NC</span></li>
+                    <li><span class="city-name">Tampa</span><span class="city-state">FL</span></li>
+                  </ul>
+                </div>
+                <div class="coverage-region">
+                  <span class="region-name">Mid-Atlantic</span>
+                  <ul class="region-cities">
+                    <li><span class="city-name">Washington</span><span class="city-state">DC</span></li>
+                    <li><span class="city-name">Richmond</span><span class="city-state">VA</span></li>
+                    <li><span class="city-name">Virginia Beach</span><span class="city-state">VA</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
+<style>
+  .about { border-top:1px solid var(--rule); }
+  .about-layout { display:grid; grid-template-columns:1.1fr 1fr; gap:80px; align-items:start; }
+  .about-main { }
+  .about-headline { font-family:var(--font-display); font-size:clamp(32px,4vw,56px); font-weight:300; line-height:1.1; letter-spacing:-0.01em; color:var(--ink); margin-bottom:44px; }
+  .about-headline em { font-style:italic; color:var(--accent); }
+  .about-body { display:flex; flex-direction:column; gap:22px; }
+  .about-body p { font-size:15px; line-height:1.85; color:var(--ink-muted); font-weight:300; }
+  .about-personal { margin-top:40px; padding-top:32px; border-top:1px solid var(--rule); }
+  .about-personal p { font-size:14px; line-height:1.85; color:var(--ink-faint); font-weight:300; }
+  .principles-label { font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:28px; font-weight:500; }
+  .principles-list { display:flex; flex-direction:column; gap:0; margin-bottom:48px; }
+  .principle { padding-block:24px; border-bottom:1px solid var(--rule); }
+  .principle:first-child { padding-top:0; }
+  .principle dt { font-family:var(--font-display); font-size:18px; font-weight:400; color:var(--ink); margin-bottom:8px; line-height:1.3; }
+  .principle dd { font-size:13px; line-height:1.75; color:var(--ink-muted); font-weight:300; }
+  .coverage-card { background:var(--paper-warm); border:1px solid var(--rule); border-left:3px solid var(--accent); padding:24px 28px; border-radius:2px; }
+  .coverage-label { display:block; font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-faint); font-weight:500; margin-bottom:20px; }
+  .coverage-regions { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .region-name { display:block; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); font-weight:500; margin-bottom:10px; }
+  .region-cities { display:flex; flex-direction:column; gap:6px; }
+  .region-cities li { display:flex; align-items:baseline; gap:8px; }
+  .city-name { font-family:var(--font-display); font-size:17px; font-weight:400; color:var(--ink); line-height:1.2; }
+  .city-state { font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-faint); font-weight:500; }
+  @media (max-width:900px) { .about-layout { grid-template-columns:1fr; gap:60px; } }
+</style>

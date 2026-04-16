@@ -23,11 +23,11 @@ const { title } = Astro.props;
           <svg viewBox="0 0 200 32" xmlns="http://www.w3.org/2000/svg" style="height:48px;width:auto;display:block;"><text x="4" font-family="'Cormorant Garamond', Garamond, Georgia, serif" dominant-baseline="alphabetic"><tspan font-size="28" font-weight="600" fill="currentColor" y="26" dy="0">RP</tspan><tspan font-size="28" font-weight="600" fill="#C49A3C" dy="-7">3</tspan><tspan font-size="16" font-weight="400" fill="currentColor" dx="6" dy="7"> Research</tspan></text></svg>
         </a>
         <ul class="nav-links">
-          <li><a href="/#research">Research</a></li>
+          <li><a href="/#research-posts">Research</a></li>
           <li><a href="/opinion">Opinion</a></li>
-          <li><a href="/#work">Experience</a></li>
-          <li><a href="/#about">About</a></li>
-          <li><a href="/#contact" class="nav-cta">Connect</a></li>
+          <li><a href="/experience">Experience</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/connect" class="nav-cta">Connect</a></li>
         </ul>
         <button class="nav-menu-toggle" aria-label="Menu" id="menuToggle">
           <span></span><span></span>
@@ -36,11 +36,11 @@ const { title } = Astro.props;
     </nav>
     <div class="mobile-menu" id="mobileMenu">
       <ul>
-        <li><a href="/#research" class="mobile-link">Research</a></li>
+        <li><a href="/#research-posts" class="mobile-link">Research</a></li>
         <li><a href="/opinion" class="mobile-link">Opinion</a></li>
-        <li><a href="/#work" class="mobile-link">Experience</a></li>
-        <li><a href="/#about" class="mobile-link">About</a></li>
-        <li><a href="/#contact" class="mobile-link">Connect</a></li>
+        <li><a href="/experience" class="mobile-link">Experience</a></li>
+        <li><a href="/about" class="mobile-link">About</a></li>
+        <li><a href="/connect" class="mobile-link">Connect</a></li>
       </ul>
     </div>
     <main><slot /></main>
