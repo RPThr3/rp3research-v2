@@ -2,12 +2,16 @@
 ---
 <section class="hero" id="home">
   <div class="hero-inner container">
+
+    <!-- Full-width headline above the grid -->
+    <h1 class="hero-headline anim anim-d2">
+      Breaking down how financial institutions and the world's most successful businesses are built — the strategy, the customer behavior, and <em>why some win.</em>
+    </h1>
+
+    <!-- Two-column grid below -->
     <div class="hero-grid">
       <!-- Left column -->
       <div class="hero-left">
-        <h1 class="hero-headline anim anim-d2">
-          Breaking down how financial institutions and the world's most successful businesses are built — the strategy, the customer behavior, and <em>why some win.</em>
-        </h1>
         <p class="hero-sub anim anim-d3">
           From bank earnings and payments strategy to the business models behind the world's most successful companies — connecting strategy, customer behavior, and the decisions that separate winners from everyone else.
         </p>
@@ -28,6 +32,7 @@
           <a href="#about" class="btn-ghost">About RP3</a>
         </div>
       </div>
+
       <!-- Right column: featured card -->
       <div class="hero-right anim anim-d4">
         <p class="hero-featured-label">Latest:</p>
@@ -48,6 +53,7 @@
         </a>
       </div>
     </div>
+
   </div>
   <div class="hero-ambient" aria-hidden="true">R</div>
 </section>
@@ -56,12 +62,14 @@
   .hero::before { content:''; position:absolute; inset:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); background-size:200px; pointer-events:none; opacity:0.5; }
   .hero-inner { position:relative; z-index:1; padding-top:clamp(32px,6vw,80px); padding-bottom:clamp(64px,10vw,120px); }
 
+  /* Full-width headline */
+  .hero-headline { font-family:var(--font-display); font-size:clamp(30px,3.6vw,52px); font-weight:300; line-height:1.12; letter-spacing:-0.02em; color:var(--ink); max-width:92%; margin-bottom:clamp(28px,3vw,44px); }
+  .hero-headline em { font-style:italic; color:var(--accent); }
+
   /* Two-column grid */
-  .hero-grid { display:grid; grid-template-columns:3fr 2fr; gap:clamp(40px,6vw,96px); align-items:center; }
+  .hero-grid { display:grid; grid-template-columns:3fr 2fr; gap:clamp(40px,6vw,96px); align-items:start; }
 
   /* Left column */
-  .hero-headline { font-family:var(--font-display); font-size:clamp(28px,3.2vw,46px); font-weight:300; line-height:1.15; letter-spacing:-0.02em; color:var(--ink); margin-bottom:40px; }
-  .hero-headline em { font-style:italic; color:var(--accent); }
   .hero-sub { font-size:clamp(15px,1.6vw,18px); line-height:1.75; color:var(--ink-muted); margin-bottom:28px; font-weight:300; }
   .hero-throughline { font-size:14px; line-height:1.65; color:var(--ink-muted); font-weight:300; letter-spacing:0.01em; font-style:italic; border-left:2px solid #C49A3C; padding-left:16px; margin-bottom:36px; }
   .hero-tags-block { margin-bottom:36px; }
@@ -75,7 +83,7 @@
   .btn-ghost:hover { border-color:var(--ink); color:var(--ink); }
 
   /* Right column — featured card */
-  .hero-right { position:relative; z-index:1; }
+  .hero-right { position:relative; z-index:1; padding-top:clamp(12px,2vw,28px); }
   .hero-featured-label { font-family:var(--font-body); font-size:11px; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:14px; display:flex; align-items:center; gap:10px; }
   .hero-featured-label::before { content:''; display:block; width:20px; height:1px; background:var(--accent); }
   .hero-card { display:block; border:1px solid var(--rule); border-top:3px solid var(--accent); background:var(--paper-warm); padding:28px; border-radius:2px; transition:box-shadow 0.2s, transform 0.2s; }
@@ -98,6 +106,7 @@
 
   /* Mobile */
   @media (max-width:768px) {
+    .hero-headline { max-width:100%; }
     .hero-grid { grid-template-columns:1fr; gap:48px; }
     .hero-ambient { display:none; }
     .hero-inner { padding-block:60px 72px; }
